@@ -10,7 +10,7 @@ return [
     | Autoload sub level data transformers during an "input_key" variable received from user request
     |
     */
-    'autoload'    => env('FRACTAL_AUTOLOAD', false),
+    'autoload'    => env('FRACTAL_AUTOLOAD', true),
 
     /*
     |--------------------------------------------------------------------------

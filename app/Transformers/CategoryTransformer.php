@@ -6,14 +6,23 @@ use League\Fractal\TransformerAbstract;
 class CategoryTransformer extends TransformerAbstract
 {
 
+    protected $availableIncludes = [
+        'bookmarks',
+    ];
+
     public function transform(Category $category)
     {
         return [
             'id'            => $category->id,
             'category_name' => $category->category_name,
-            'created_at'    => $category->created_at,
-            'updated_at'    => $category->updated_at,
         ];
+    }
+
+    public function includeBookmarks(Category $category)
+    {
+        $bookmarks = $category->bookmarks;
+
+        return $this->collection($bookmarks, new BookmarkTransformer());
     }
 
 }
