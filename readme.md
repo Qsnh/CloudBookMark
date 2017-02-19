@@ -2,6 +2,45 @@
 
 Laravel + VueJS
 
+### 用户接口
+
+方法 | 接口 | 解释
+--- | --- | ---
+GET | /api/v1/user | 获取用户信息
+GET | /api/v1/user?include=categories | 获取用户信息 + 分类
+GET | /api/v1/user?include=categories.bookmarks | 获取用户信息 + 分类 + 书签
+
+### 分类接口
+
+方法 | 接口 | 解释
+--- | --- | ---
+GET | /api/v1/category | 获取分类
+GET | /api/v1/category?include=bookmarks | 获取分类 + 书签
+POST | /api/v1/category/add | 添加分类
+DELETE | /api/v1/category/{id}/delete | 删除分类
+POST | /api/v1/category/{id}/edit | 编辑分类
+
+### 书签接口
+
+方法 | 接口 | 解释
+--- | --- | ---
+GET | /api/v1/bookmark | 获取书签
+GET | /api/v1/bookmark?include=category | 获取书签 + 分类
+POST | /api/v1/bookmark/add | 添加书签
+DELETE | /api/v1/bookmark/{id}/delete | 删除书签
+
+### 数据统一返回结构
+
+```
+{
+    "code": 0 | 1,
+    "error": success | error,
+    "message": "说明信息",
+    "data": object,
+}
+```
+
+
 ===============================
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
