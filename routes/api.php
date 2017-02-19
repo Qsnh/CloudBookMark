@@ -11,6 +11,9 @@
 |
 */
 
+/** 用户注册 */
+Route::post('v1/user/add', 'Api\UserController@create');
+
 Route::group(['prefix' => 'v1', 'middleware' => ['auth:api']], function () {
 
     Route::get('/user', 'Api\UserController@me');

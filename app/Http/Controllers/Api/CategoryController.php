@@ -23,9 +23,9 @@ class CategoryController extends Controller
 
     public function create(Request $request)
     {
-        $result = $this->validator($request);
-        if ($result !== true) {
-            return $result;
+        $validator = $this->validator($request->all());
+        if ($validator->fails()) {
+            return $this->apiResponse(1, $validator->errors());
         }
 
         /** 创建分类 */
@@ -39,9 +39,9 @@ class CategoryController extends Controller
 
     public function edit(Request $request, $category_id)
     {
-        $result = $this->validator($request);
-        if ($result !== true) {
-            return $result;
+        $validator = $this->validator($request->all());
+        if ($validator->fails()) {
+            return $this->apiResponse(1, $validator->errors());
         }
 
         $category = Auth::user()->categories()->where('id', $category_id)->first();
@@ -56,20 +56,14 @@ class CategoryController extends Controller
         return $this->apiResponse(0, '操作成功！');
     }
 
-    protected function validator(Request $request)
+    protected function validator(array $data)
     {
-        $validator = Validator::make($request->all(), [
+        return Validator::make($data, [
             'category_name' => 'required|max:10',
         ], [
             'category_name.required' => '请填写分类名',
             'category_name.max'      => '分类长度最大10个字',
         ]);
-
-        if ($validator->fails()) {
-            return $this->apiResponse(1, $validator->errors());
-        }
-
-        return true;
     }
 
     public function delete($category_id)
