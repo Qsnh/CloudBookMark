@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,6 +11,19 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'v1', 'middleware' => ['auth:api']], function () {
+    /** 获取用户基本信息 */
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    /** 获取所有书签分类 */
+    Route::get('/category/all', 'Api\CategoryController@all');
+    /** 添加书签分类 */
+    Route::post('/category/add', 'Api\CategoryController@create');
+    /** 编辑书签 */
+    Route::post('/category/{id}/edit', 'Api\CategoryController@edit');
+    /** 删除书签分类 */
+    Route::delete('/category/{id}/delete', 'Api\CategoryController@delete');
+
 });

@@ -14,6 +14,7 @@ class CreateBookmarksTable extends Migration
     public function up()
     {
         Schema::create('bookmarks', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('user_id', false, true);
             $table->integer('category_id', false, true);
             $table->string('bookmark_name')->comment('书签名');

@@ -18,4 +18,9 @@ class Category extends Model
         return $this->hasMany('App\Bookmark', 'category_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
 }
