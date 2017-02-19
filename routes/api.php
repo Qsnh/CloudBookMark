@@ -12,18 +12,18 @@
 */
 
 Route::group(['prefix' => 'v1', 'middleware' => ['auth:api']], function () {
-    /** 获取用户基本信息 */
+
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
 
-    /** 获取所有书签分类 */
-    Route::get('/category/all', 'Api\CategoryController@all');
-    /** 添加书签分类 */
+    Route::get('/category', 'Api\CategoryController@all');
     Route::post('/category/add', 'Api\CategoryController@create');
-    /** 编辑书签 */
     Route::post('/category/{id}/edit', 'Api\CategoryController@edit');
-    /** 删除书签分类 */
     Route::delete('/category/{id}/delete', 'Api\CategoryController@delete');
 
+    Route::get('/bookmark', 'Api\BookmarkController@all');
+    Route::post('/bookmark/add', 'Api\BookmarkController@create');
+    Route::post('/bookmark/{id}/edit', 'Api\BookmarkController@edit');
+    Route::delete('/bookmark/{id}/delete', 'Api\BookmarkController@delete');
 });
