@@ -13,9 +13,7 @@
 
 Route::group(['prefix' => 'v1', 'middleware' => ['auth:api']], function () {
 
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
+    Route::get('/user', 'Api\UserController@me');
 
     Route::get('/category', 'Api\CategoryController@all');
     Route::post('/category/add', 'Api\CategoryController@create');
