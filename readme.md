@@ -22,7 +22,7 @@ php artisan key:generate
 
 四、配置 `.env` 文件
 
-无、安装数据表
+五、安装数据表
 ```
 php artisan migrate
 ```
@@ -32,7 +32,7 @@ php artisan migrate
 php artisan passport:install
 ```
 
-五、配置前端App。
+七、配置前端App。
 
 ## 接口列表
 
