@@ -4,6 +4,27 @@ Laravel + VueJS
 
 此项目只是整个应用的的API部分，SPA部分请查看：[https://github.com/Qsnh/CloudBookMark-SPA](https://github.com/Qsnh/CloudBookMark-SPA)
 
+### 安装说明
+
+一、下载到本地：
+```
+git clone https://github.com/Qsnh/CloudBookMark.git
+```
+
+二、配置 `.env` 文件
+
+三、安装数据表
+```
+php artisan migrate
+```
+
+四、安装 `Laravel Passport` 授权客户端
+```
+php artisan passport:install
+```
+
+五、配置前端App。
+
 ### 用户接口
 
 方法 | 接口 | 解释
@@ -45,6 +66,15 @@ DELETE | /api/v1/bookmark/{id}/delete | 删除书签
 
 ## 接口详细说明
 
+## 除了获取 `AccessToken` 接口，其他的 `API` 访问均需要在 `Request Header` 中加入：
+
+```
+Bearer access_token
+```
+
+> 注意 Bearer 后面有个空格
+
+
 ### `/oauth/token`
 
 参数 | 说明 | 默认值
@@ -55,14 +85,6 @@ client_secret | 客户端secret | 空
 username | 用户名 | 空
 password | 密码 | 空
 scope | 权限范围 | 空
-
-以下 `API` 访问均需要在 `Request Header` 中加入：
-
-```
-Bearer access_token
-```
-
-> 注意 Bearer 后面有个空格
 
 ### `/api/v1/category/add`
 
