@@ -4,7 +4,7 @@ Laravel + VueJS
 
 此项目只是整个应用的的API部分，SPA部分请查看：[https://github.com/Qsnh/CloudBookMark-SPA](https://github.com/Qsnh/CloudBookMark-SPA)
 
-### 安装说明
+## 安装说明
 
 一、下载到本地：
 ```
@@ -24,6 +24,8 @@ php artisan passport:install
 ```
 
 五、配置前端App。
+
+## 接口列表
 
 ### 用户接口
 
@@ -53,7 +55,7 @@ GET | /api/v1/bookmark?include=category | 获取书签 + 分类
 POST | /api/v1/bookmark/add | 添加书签
 DELETE | /api/v1/bookmark/{id}/delete | 删除书签
 
-### 数据统一返回结构
+## 数据统一返回结构
 
 ```
 {
@@ -66,7 +68,7 @@ DELETE | /api/v1/bookmark/{id}/delete | 删除书签
 
 ## 接口详细说明
 
-## 除了获取 `AccessToken` 接口，其他的 `API` 访问均需要在 `Request Header` 中加入：
+#### 除了获取 `AccessToken` 接口，其他的 `API` 访问均需要在 `Request Header` 中加入：
 
 ```
 Bearer access_token
@@ -75,7 +77,7 @@ Bearer access_token
 > 注意 Bearer 后面有个空格
 
 
-### `/oauth/token`
+#### `/oauth/token`
 
 参数 | 说明 | 默认值
 --- | --- | ---
@@ -86,19 +88,19 @@ username | 用户名 | 空
 password | 密码 | 空
 scope | 权限范围 | 空
 
-### `/api/v1/category/add`
+#### `/api/v1/category/add`
 
 参数 | 说明 | 默认值
 --- | --- | ---
 category_name | 分类名 | 空
 
-### `/api/v1/category/{id}/edit`
+#### `/api/v1/category/{id}/edit`
 
 参数 | 说明 | 默认值
 --- | --- | ---
 category_name | 分类名 | 空
 
-### `/api/v1/bookmark/add`
+#### `/api/v1/bookmark/add`
 
 参数 | 说明 | 默认值
 --- | --- | ---
@@ -106,7 +108,7 @@ category_id | 分类ID | 空
 bookmark_name | 书签名 | 空
 bookmark_url | 书签地址 | 空
 
-### Over.
+## Over.
 
 > 注意，所有的API均支持跨域操作，如要关闭，请进行如下操作：
 

@@ -26,18 +26,18 @@ Route::group(['prefix' => 'v1', 'middleware' => ['auth:api']], function () {
     /** 添加分类 */
     Route::post('/category/add', 'Api\CategoryController@create');
     /** 查找分类 */
-    Route::get('/category/{id}/find', 'Api\CategoryController@find');
+    Route::get('/category/{id}/find', 'Api\CategoryController@find')->where('id', '[0-9]+');
     /** 编辑分类 */
-    Route::post('/category/{id}/edit', 'Api\CategoryController@edit');
+    Route::post('/category/{id}/edit', 'Api\CategoryController@edit')->where('id', '[0-9]+');
     /** 删除分类 */
-    Route::delete('/category/{id}/delete', 'Api\CategoryController@delete');
+    Route::delete('/category/{id}/delete', 'Api\CategoryController@delete')->where('id', '[0-9]+');
 
     /** 获取所有书签 */
     Route::get('/bookmark', 'Api\BookmarkController@all');
     /** 添加书签 */
     Route::post('/bookmark/add', 'Api\BookmarkController@create');
     /** 编辑书签 */
-    Route::post('/bookmark/{id}/edit', 'Api\BookmarkController@edit');
+    Route::post('/bookmark/{id}/edit', 'Api\BookmarkController@edit')->where('id', '[0-9]+');
     /** 删除书签 */
-    Route::delete('/bookmark/{id}/delete', 'Api\BookmarkController@delete');
+    Route::delete('/bookmark/{id}/delete', 'Api\BookmarkController@delete')->where('id', '[0-9]+');
 });
