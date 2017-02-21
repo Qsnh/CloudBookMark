@@ -106,6 +106,14 @@ category_id | 分类ID | 空
 bookmark_name | 书签名 | 空
 bookmark_url | 书签地址 | 空
 
+### Over.
+
+> 注意，所有的API均支持跨域操作，如要关闭，请进行如下操作：
+
+第一、删除 `config/app.php` 中的 `Barryvdh\Cors\ServiceProvider::class,` 。
+
+第二、删除 `app/Http/kernel.php` 中的 `\Barryvdh\Cors\HandleCors::class,` 。
+
 ===============================
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
