@@ -25,7 +25,7 @@ class CategoryController extends Controller
     {
         $validator = $this->validator($request->all());
         if ($validator->fails()) {
-            return $this->apiResponse(1, $validator->errors());
+            return $this->apiResponse(1, $validator->errors()->first());
         }
 
         /** 创建分类 */
@@ -41,7 +41,7 @@ class CategoryController extends Controller
     {
         $validator = $this->validator($request->all());
         if ($validator->fails()) {
-            return $this->apiResponse(1, $validator->errors());
+            return $this->apiResponse(1, $validator->errors()->first());
         }
 
         $category = Auth::user()->categories()->where('id', $category_id)->first();
@@ -83,4 +83,14 @@ class CategoryController extends Controller
         return $this->apiResponse(0, '操作成功！');
     }
 
+    public function find($id)
+    {
+        $category = Auth::user()->categories()->where('id', $id)->first();
+
+        if (is_null($category)) {
+            return $this->apiResponse(1, '分类不存在');
+        }
+
+        return $this->apiResponse(0, '', Fractal::item($category, new CategoryTransformer())->getArray());
+    }
 }

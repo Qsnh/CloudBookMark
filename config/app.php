@@ -182,6 +182,8 @@ return [
 
         /** Laravel Fractal */
         Cyvelnet\Laravel5Fractal\Laravel5FractalServiceProvider::class,
+
+        Barryvdh\Cors\ServiceProvider::class,
     ],
 
     /*
