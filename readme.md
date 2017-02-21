@@ -2,10 +2,13 @@
 
 Laravel + VueJS
 
+此项目只是整个应用的的API部分，SPA部分请查看：[https://github.com/Qsnh/CloudBookMark-SPA](https://github.com/Qsnh/CloudBookMark-SPA)
+
 ### 用户接口
 
 方法 | 接口 | 解释
 --- | --- | ---
+POST | /oauth/token | 获取AccessToken
 GET | /api/v1/user | 获取用户信息
 GET | /api/v1/user?include=categories | 获取用户信息 + 分类
 GET | /api/v1/user?include=categories.bookmarks | 获取用户信息 + 分类 + 书签
@@ -40,6 +43,46 @@ DELETE | /api/v1/bookmark/{id}/delete | 删除书签
 }
 ```
 
+## 接口详细说明
+
+### `/oauth/token`
+
+参数 | 说明 | 默认值
+--- | --- | ---
+grant_type | 授权方式 | password
+client_id | 客户端ID | 空
+client_secret | 客户端secret | 空
+username | 用户名 | 空
+password | 密码 | 空
+scope | 权限范围 | 空
+
+以下 `API` 访问均需要在 `Request Header` 中加入：
+
+```
+Bearer access_token
+```
+
+> 注意 Bearer 后面有个空格
+
+### `/api/v1/category/add`
+
+参数 | 说明 | 默认值
+--- | --- | ---
+category_name | 分类名 | 空
+
+### `/api/v1/category/{id}/edit`
+
+参数 | 说明 | 默认值
+--- | --- | ---
+category_name | 分类名 | 空
+
+### `/api/v1/bookmark/add`
+
+参数 | 说明 | 默认值
+--- | --- | ---
+category_id | 分类ID | 空
+bookmark_name | 书签名 | 空
+bookmark_url | 书签地址 | 空
 
 ===============================
 
