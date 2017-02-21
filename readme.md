@@ -15,14 +15,19 @@ git clone https://github.com/Qsnh/CloudBookMark.git
 composer install
 ```
 
-三、配置 `.env` 文件
+三、生成 `key`
+```
+php artisan key:generate
+```
 
-四、安装数据表
+四、配置 `.env` 文件
+
+无、安装数据表
 ```
 php artisan migrate
 ```
 
-五、安装 `Laravel Passport` 授权客户端
+六、安装 `Laravel Passport` 授权客户端
 ```
 php artisan passport:install
 ```
