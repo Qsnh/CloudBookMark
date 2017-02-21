@@ -10,15 +10,19 @@ Laravel + VueJS
 ```
 git clone https://github.com/Qsnh/CloudBookMark.git
 ```
+二、安装依赖
+```
+composer install
+```
 
-二、配置 `.env` 文件
+三、配置 `.env` 文件
 
-三、安装数据表
+四、安装数据表
 ```
 php artisan migrate
 ```
 
-四、安装 `Laravel Passport` 授权客户端
+五、安装 `Laravel Passport` 授权客户端
 ```
 php artisan passport:install
 ```
