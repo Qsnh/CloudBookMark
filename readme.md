@@ -49,9 +49,10 @@ GET | /api/v1/user?include=categories.bookmarks | 获取用户信息 + 分类 + 
 
 方法 | 接口 | 解释
 --- | --- | ---
-GET | /api/v1/category | 获取分类
+GET | /api/v1/category | 获取所有分类
 GET | /api/v1/category?include=bookmarks | 获取分类 + 书签
 POST | /api/v1/category/add | 添加分类
+GET | /api/v1/category/{id}/find | 查找单个分类
 DELETE | /api/v1/category/{id}/delete | 删除分类
 POST | /api/v1/category/{id}/edit | 编辑分类
 
