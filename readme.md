@@ -39,11 +39,11 @@ php artisan passport:install
 方法 | 接口 | 解释
 --- | --- | ---
 POST | /oauth/token | 获取AccessToken
-GET | /api/v1/user | 获取用户信息
-GET | /api/v1/user?include=categories | 获取用户信息 + 分类
-GET | /api/v1/user?include=categories.bookmarks | 获取用户信息 + 分类 + 书签
+GET | /user | 获取用户信息
+GET | /user?include=categories | 获取用户信息 + 分类
+GET | /user?include=categories.bookmarks | 获取用户信息 + 分类 + 书签
 
-## API接口(V2)
+## V2
 
 > V2版本接口是在作者学习 `RESTful API` 设计的API接口，全局基本满足 `RESTful API` 的设计规范。同时也保留了V1版本。
 
@@ -67,7 +67,8 @@ POST | /bookmark | 201 | 创建书签
 
 > 留意彩蛋.
 
-## 接口列表(V1)
+
+## V1
 
 > V1版本在写这个项目的时候作者对于 `RESTful API` 了解不足，API的设计也有很多缺陷。
 
