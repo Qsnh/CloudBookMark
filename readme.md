@@ -34,7 +34,51 @@ php artisan passport:install
 
 七、配置前端App。
 
-### 用户接口
+
+## 接口详细说明(针对V2)
+
+
+#### 除了获取 `AccessToken` 接口，其他的 `API` 访问均需要在 `Request Header` 中加入：
+
+```
+Authorization:Bearer access_token
+```
+
+> 注意 Bearer 后面有个空格
+
+
+#### `/oauth/token`
+
+参数 | 说明 | 默认值
+--- | --- | ---
+grant_type | 授权方式 | password
+client_id | 客户端ID | 空
+client_secret | 客户端secret | 空
+username | 用户名 | 空
+password | 密码 | 空
+scope | 权限范围 | 空
+
+#### `/category`
+
+参数 | 说明 | 默认值
+--- | --- | ---
+category_name | 分类名 | 空
+
+#### `/category/{id}`
+
+参数 | 说明 | 默认值
+--- | --- | ---
+category_name | 分类名 | 空
+
+#### `/bookmark`
+
+参数 | 说明 | 默认值
+--- | --- | ---
+category_id | 分类ID | 空
+bookmark_name | 书签名 | 空
+bookmark_url | 书签地址 | 空
+
+## 用户接口
 
 方法 | 接口 | 解释
 --- | --- | ---
@@ -62,7 +106,7 @@ DELETE | /category/{id} | 204 | 删除分类
 方法 | 接口 | code(success) | 解释
 --- | --- | --- | ---
 GET | /bookmarks | 200 | 获取当前用户所有书签
-GET | /bookmark/{id} | 204 | 删除书签
+DELETE | /bookmark/{id} | 204 | 删除书签
 POST | /bookmark | 201 | 创建书签
 
 > 留意彩蛋.
@@ -102,48 +146,6 @@ DELETE | /api/v1/bookmark/{id}/delete | 删除书签
     "data": object,
 }
 ```
-
-## 接口详细说明
-
-#### 除了获取 `AccessToken` 接口，其他的 `API` 访问均需要在 `Request Header` 中加入：
-
-```
-Authorization:Bearer access_token
-```
-
-> 注意 Bearer 后面有个空格
-
-
-#### `/oauth/token`
-
-参数 | 说明 | 默认值
---- | --- | ---
-grant_type | 授权方式 | password
-client_id | 客户端ID | 空
-client_secret | 客户端secret | 空
-username | 用户名 | 空
-password | 密码 | 空
-scope | 权限范围 | 空
-
-#### `/api/v1/category/add`
-
-参数 | 说明 | 默认值
---- | --- | ---
-category_name | 分类名 | 空
-
-#### `/api/v1/category/{id}/edit`
-
-参数 | 说明 | 默认值
---- | --- | ---
-category_name | 分类名 | 空
-
-#### `/api/v1/bookmark/add`
-
-参数 | 说明 | 默认值
---- | --- | ---
-category_id | 分类ID | 空
-bookmark_name | 书签名 | 空
-bookmark_url | 书签地址 | 空
 
 ## Over.
 
