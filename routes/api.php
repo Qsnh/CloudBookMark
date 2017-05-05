@@ -11,9 +11,8 @@
 |
 */
 
-/** 用户注册 */
-Route::post('v1/user/add', 'Api\UserController@create');
-
+/** API Version 1.0 */
+Route::post('/v1/user/add', 'Api\UserController@create');
 Route::group(['prefix' => 'v1', 'middleware' => ['auth:api']], function () {
 
     /** 获取用户信息 */
@@ -40,4 +39,34 @@ Route::group(['prefix' => 'v1', 'middleware' => ['auth:api']], function () {
     Route::post('/bookmark/{id}/edit', 'Api\BookmarkController@edit')->where('id', '[0-9]+');
     /** 删除书签 */
     Route::delete('/bookmark/{id}/delete', 'Api\BookmarkController@delete')->where('id', '[0-9]+');
+});
+
+/** API Version 2.0 */
+Route::post('/v2/user', 'ApiTwo\UserController@store');
+Route::group(['prefix' => 'v2', 'middleware' => ['auth:api'], 'namespace' => 'ApiTwo'], function () {
+
+    /** 获取用户信息 */
+    Route::get('/user', 'UserController@current');
+    /** 更换密码 */
+    Route::patch('/user/password', 'UserController@changePassword');
+
+    /** 获取所有分类 */
+    Route::get('/categories', 'CategoryController@all');
+    /** 添加分类 */
+    Route::post('/category', 'CategoryController@store');
+    /** 查找分类 */
+    Route::get('/category/{id}', 'CategoryController@single')->where('id', '[0-9]+');
+    /** 编辑分类 */
+    Route::patch('/category/{id}', 'CategoryController@update')->where('id', '[0-9]+');
+    /** 删除分类 */
+    Route::delete('/category/{id}', 'CategoryController@delete')->where('id', '[0-9]+');
+
+    /** 获取所有书签 */
+    Route::get('/bookmarks', 'BookmarkController@all');
+    /** 添加书签 */
+    Route::post('/bookmark', 'BookmarkController@store');
+    /** 编辑书签 */
+    Route::patch('/bookmark/{id}', 'BookmarkController@edit')->where('id', '[0-9]+');
+    /** 删除书签 */
+    Route::delete('/bookmark/{id}', 'BookmarkController@delete')->where('id', '[0-9]+');
 });

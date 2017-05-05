@@ -34,8 +34,6 @@ php artisan passport:install
 
 七、配置前端App。
 
-## 接口列表
-
 ### 用户接口
 
 方法 | 接口 | 解释
@@ -44,6 +42,34 @@ POST | /oauth/token | 获取AccessToken
 GET | /api/v1/user | 获取用户信息
 GET | /api/v1/user?include=categories | 获取用户信息 + 分类
 GET | /api/v1/user?include=categories.bookmarks | 获取用户信息 + 分类 + 书签
+
+## API接口(V2)
+
+> V2版本接口是在作者学习 `RESTful API` 设计的API接口，全局基本满足 `RESTful API` 的设计规范。同时也保留了V1版本。
+
+### 分类接口
+
+方法 | 接口 | code(success) | 解释
+--- | --- | --- | ---
+GET | /categories | 200 | 获取当前用户所有的分类
+POST | /category | 201 | 创建分类
+GET | /category/{id} | 200 | 获取ID的分类
+PATCH | /category/{id} | 201 | 编辑分类
+DELETE | /category/{id} | 204 | 删除分类
+
+### 书签接口
+
+方法 | 接口 | code(success) | 解释
+--- | --- | --- | ---
+GET | /bookmarks | 200 | 获取当前用户所有书签
+GET | /bookmark/{id} | 204 | 删除书签
+POST | /bookmark | 201 | 创建书签
+
+> 留意彩蛋.
+
+## 接口列表(V1)
+
+> V1版本在写这个项目的时候作者对于 `RESTful API` 了解不足，API的设计也有很多缺陷。
 
 ### 分类接口
 
@@ -81,7 +107,7 @@ DELETE | /api/v1/bookmark/{id}/delete | 删除书签
 #### 除了获取 `AccessToken` 接口，其他的 `API` 访问均需要在 `Request Header` 中加入：
 
 ```
-Bearer access_token
+Authorization:Bearer access_token
 ```
 
 > 注意 Bearer 后面有个空格
