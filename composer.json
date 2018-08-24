@@ -7,6 +7,7 @@
     "require": {
         "php": ">=7.0.0",
         "cyvelnet/laravel5-fractal": "^2.0",
+        "laracasts/flash": "^3.0",
         "laravel/framework": "5.5.*",
         "laravel/passport": "^2.0",
         "laravel/tinker": "~1.0",
