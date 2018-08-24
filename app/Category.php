@@ -10,17 +10,17 @@ class Category extends Model
     protected $table = 'categories';
 
     protected $fillable = [
-        'user_id', 'category_name', 'created_at', 'updated_at',
+        'user_id', 'category_name',
     ];
 
     public function bookmarks()
     {
-        return $this->hasMany('App\Bookmark', 'category_id');
+        return $this->hasMany(Bookmark::class, 'category_id');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
 }
