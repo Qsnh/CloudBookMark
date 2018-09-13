@@ -9,13 +9,6 @@ use Illuminate\Support\Facades\Auth;
 class MemberController extends BaseController
 {
 
-    protected $user;
-
-    public function __construct()
-    {
-        $this->user = Auth::user();
-    }
-
     public function index()
     {
         return view('frontend.member.index');

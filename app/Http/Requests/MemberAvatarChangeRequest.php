@@ -14,7 +14,7 @@ class MemberAvatarChangeRequest extends FrontendRequest
     public function rules()
     {
         return [
-            'avatar' => 'required|image|size:1024',
+            'avatar' => 'required|image',
         ];
     }
 
@@ -23,7 +23,6 @@ class MemberAvatarChangeRequest extends FrontendRequest
         return [
             'avatar.required' => '请上传头像',
             'avatar.image' => '请上传图片文件',
-            'avatar.size' => '头像文件大小不能超过1m',
         ];
     }
 }

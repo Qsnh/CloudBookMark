@@ -14,8 +14,8 @@ class Controller extends BaseController
     protected function apiResponse($code = 0, $message = '', $data = [])
     {
         return response()->json(array_merge([
-            'code'    => $code,
-            'status'  => $code == 0 ? 'success' : 'error',
+            'code' => $code,
+            'status' => $code == 0 ? 'success' : 'error',
             'message' => $message,
         ], $data));
     }
