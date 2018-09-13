@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Requests\MemberAvatarChangeRequest;
 use App\Http\Requests\MemberChangePassword;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 
 class MemberController extends BaseController
 {
@@ -30,18 +28,16 @@ class MemberController extends BaseController
 
     public function passwordChangeHandler(MemberChangePassword $request)
     {
-        $oldPassword = $request->input('old_password');
-        $newPassword = $request->input('new_password');
+        $oldPassword = $request->post('old_password');
+        $newPassword = $request->post('new_password');
+        $user = Auth::user();
 
-        if (! Hash::check($oldPassword, $this->user->getAuthPassword())) {
+        if (!$user->checkPasswordIsOk($oldPassword)) {
             flash()->error('原密码错误');
-            return back();
+        } else {
+            $user->changePassword($newPassword);
+            flash()->success('密码修改成功');
         }
-
-        $this->user->password = bcrypt($newPassword);
-        $this->user->save();
-
-        flash()->success('密码修改成功');
         return back();
     }
 
@@ -52,15 +48,8 @@ class MemberController extends BaseController
 
     public function avatarChangeHandler(MemberAvatarChangeRequest $request)
     {
-        $image = $request->file('file');
-        $path = $image->store('/avatar');
-        $url = Storage::disk(config('filesystems.default'))->url($path);
-
-        $this->user->avatar = $url;
-        $this->user->save();
-
+        Auth::user()->saveAvatar($request->file('file'));
         flash()->success('头像修改成功');
-
         return back();
     }
 
