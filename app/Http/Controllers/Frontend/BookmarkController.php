@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Bookmark;
 use App\Http\Requests\BookmarkRequest;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class BookmarkController extends Controller
+class BookmarkController extends BaseController
 {
 
     public function create()
@@ -24,13 +23,13 @@ class BookmarkController extends Controller
 
     public function edit($id)
     {
-        $bookmark = Auth::user()->bookmarks()->firstOrFail($id);
+        $bookmark = Auth::user()->findBookmark($id);
         return view('frontend.bookmark.edit', compact('bookmark'));
     }
 
     public function update(BookmarkRequest $request, $id)
     {
-        $bookmark = Auth::user()->bookmarks()->firstOrFail($id);
+        $bookmark = Auth::user()->findBookmark($id);
         $bookmark->fill($request->filldata())->save();
         flash()->success('保存成功');
         return back();
@@ -38,7 +37,7 @@ class BookmarkController extends Controller
 
     public function destroy($id)
     {
-        $bookmark = Auth::user()->bookmarks()->firstOrFail($id);
+        $bookmark = Auth::user()->findBookmark($id);
         $bookmark->delete();
         flash()->success('删除成功');
         return back();

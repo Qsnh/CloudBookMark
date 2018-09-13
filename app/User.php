@@ -90,4 +90,22 @@ class User extends Authenticatable
         $this->save();
     }
 
+    /**
+     * @param int $id
+     * @return Bookmark
+     */
+    public function findBookmark(integer $id) : Bookmark
+    {
+        return $this->bookmarks()->whereId($id)->firstOrFail();
+    }
+
+    /**
+     * @param int $id
+     * @return Category
+     */
+    public function findCategory(integer $id) : Category
+    {
+        return $this->categories()->whereId($id)->firstOrFail();
+    }
+
 }

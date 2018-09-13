@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Category;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use Illuminate\Support\Facades\Auth;
 
-class CategoryController extends Controller
+class CategoryController extends BaseController
 {
 
     public function create()
@@ -24,13 +23,13 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        $category = Auth::user()->category()->firstOrFail($id);
+        $category = Auth::user()->findCategory($id);
         return view('frontend.category.edit', compact('category'));
     }
 
     public function update(CategoryRequest $request, $id)
     {
-        $category = Auth::user()->categories()->firstOrFail($id);
+        $category = Auth::user()->findCategory($id);
         $category->fill($request->filldata())->save();
         flash()->success('保存成功');
         return back();
@@ -38,7 +37,7 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        $category = Auth::user()->categories()->firstOrFail($id);
+        $category = Auth::user()->findCategory($id);
         if ($category->bookmarks()->exists()) {
             flash()->error('该分类下存在标签');
         } else {
