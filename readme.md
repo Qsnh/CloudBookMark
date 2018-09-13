@@ -10,17 +10,22 @@ Laravel + VueJS
 ```
 git clone https://github.com/Qsnh/CloudBookMark.git
 ```
+
 二、安装依赖
 ```
 composer install
 ```
 
-三、生成 `key`
+三、配置 `.env` 文件
+
+```
+cp .env.example .env
+```
+
+四、生成 `key`
 ```
 php artisan key:generate
 ```
-
-四、配置 `.env` 文件
 
 五、安装数据表
 ```
