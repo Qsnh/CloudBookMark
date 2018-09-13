@@ -11,7 +11,8 @@ class BookmarkController extends BaseController
 
     public function create()
     {
-        return view('frontend.bookmark.create');
+        $categories = Auth::user()->categories()->orderByDesc('id')->get();
+        return view('frontend.bookmark.create', compact('categories'));
     }
 
     public function store(BookmarkRequest $request)
