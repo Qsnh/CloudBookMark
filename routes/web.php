@@ -19,4 +19,9 @@ Route::group([
     Route::get('/avatar/change', 'MemberController@showAvatarChangePage');
     Route::post('/avatar/change', 'MemberController@avatarChangeHandler');
 
+    // 分类
+    Route::resource('/category', 'CategoryController');
+    // 书签
+    Route::resource('/bookmark', 'BookmarkController');
+
 });

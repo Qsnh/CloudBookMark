@@ -2,19 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-
-class CreateCategoryRequest extends FormRequest
+class CategoryRequest extends FrontendRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -32,7 +21,15 @@ class CreateCategoryRequest extends FormRequest
     {
         return [
             'category_name.required' => '请填写分类名',
-            'category_name.max'      => '分类长度最大10个字',
+            'category_name.max' => '分类长度最大10个字',
         ];
     }
+
+    public function filldata()
+    {
+        return [
+            'category_name' => $this->post('category_name'),
+        ];
+    }
+
 }

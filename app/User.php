@@ -55,7 +55,7 @@ class User extends Authenticatable
      * 保存头像
      * @param UploadedFile $file
      */
-    public function saveAvatar(UploadedFile $file) : void
+    public function saveAvatar(UploadedFile $file): void
     {
         $path = $file->store('/avatar');
         $url = Storage::disk(config('filesystems.default'))->url($path);
@@ -75,7 +75,7 @@ class User extends Authenticatable
      * @param string $password
      * @return bool
      */
-    public function checkPasswordIsOk(string $password) : bool
+    public function checkPasswordIsOk(string $password): bool
     {
         return Hash::check($password, $this->password);
     }
@@ -84,7 +84,7 @@ class User extends Authenticatable
      * 修改密码
      * @param string $password
      */
-    public function changePassword(string $password) : void
+    public function changePassword(string $password): void
     {
         $this->password = $password;
         $this->save();
