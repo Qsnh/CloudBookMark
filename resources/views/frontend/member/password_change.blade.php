@@ -6,7 +6,7 @@
         <div class="panel-heading">
             修改密码
         </div>
-        <div class="panel panel-body">
+        <div class="panel-body">
             <div class="col-sm-12">
                 <form action="" class="form-horizontal" method="post">
                     {!! csrf_field() !!}

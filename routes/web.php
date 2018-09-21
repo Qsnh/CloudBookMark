@@ -19,4 +19,8 @@ Route::group([
     Route::get('/avatar/change', 'MemberController@showAvatarChangePage')->name('member.avatar');
     Route::post('/avatar/change', 'MemberController@avatarChangeHandler');
 
+    // 分类添加
+    Route::get('/category/create', 'CategoryController@create')->name('category.create');
+    Route::post('/category/create', 'CategoryController@store');
+
 });

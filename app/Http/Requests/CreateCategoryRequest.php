@@ -35,4 +35,10 @@ class CreateCategoryRequest extends FormRequest
             'category_name.max'      => '分类长度最大10个字',
         ];
     }
+
+    public function filldata()
+    {
+        return ['category_name' => $this->input('category_name')];
+    }
+
 }
