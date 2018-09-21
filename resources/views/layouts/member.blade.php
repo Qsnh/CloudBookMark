@@ -5,7 +5,15 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-3">
-                <ul class="list-group">
+                <ul class="list-group text-center">
+                    <li class="list-group-item">
+                        <p>
+                            <a href="{{route('member.avatar')}}">
+                                <img class="img-circle" width="80" height="80" src="{{Auth::user()->avatar}}">
+                            </a>
+                        </p>
+                        <p>{{Auth::user()->name}}</p>
+                    </li>
                     <li class="list-group-item">
                         <a href="{{route('member')}}">会员中心</a>
                     </li>

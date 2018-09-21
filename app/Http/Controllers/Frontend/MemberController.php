@@ -11,13 +11,6 @@ use Illuminate\Support\Facades\Storage;
 class MemberController extends BaseController
 {
 
-    protected $user;
-
-    public function __construct()
-    {
-        $this->user = Auth::user();
-    }
-
     public function index()
     {
         return view('frontend.member.index');
@@ -38,8 +31,9 @@ class MemberController extends BaseController
             return back();
         }
 
-        $this->user->password = bcrypt($newPassword);
-        $this->user->save();
+        $user = Auth::user();
+        $user->password = bcrypt($newPassword);
+        $user->save();
 
         flash()->success('密码修改成功');
         return back();
@@ -53,14 +47,14 @@ class MemberController extends BaseController
     public function avatarChangeHandler(MemberAvatarChangeRequest $request)
     {
         $image = $request->file('file');
-        $path = $image->store('/avatar');
-        $url = Storage::disk(config('filesystems.default'))->url($path);
+        $path = $image->store('/avatar', ['disk' => 'public']);
+        $url = Storage::disk('public')->url($path);
 
-        $this->user->avatar = $url;
-        $this->user->save();
+        $user = Auth::user();
+        $user->avatar = $url;
+        $user->save();
 
         flash()->success('头像修改成功');
-
         return back();
     }
 
